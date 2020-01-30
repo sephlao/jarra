@@ -8,7 +8,7 @@ app.set('view engine', 'handlebars');
 
 app.use(Express.static('public'))
 
-app.listen(3000, () => {
+app.listen(3001, () => {
     console.log('web app is up and running...');
 })
 
