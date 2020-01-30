@@ -1,12 +1,14 @@
-import Express from 'express';
-import HandleBars from 'express-handlebars';
+// import Express from 'express';
+// import HandleBars from 'express-handlebars';
+const express = require('express');
+const handlebars = require('express-handlebars');
 
-const app = new Express();
+const app = express();
 
-app.engine('handlebars', new HandleBars());
+app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 
-app.use(Express.static('public'))
+app.use(express.static('public'))
 
 app.listen(3001, () => {
     console.log('web app is up and running...');
