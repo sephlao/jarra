@@ -1,21 +1,44 @@
 {{!-- home hero banner --}}
 <section class="hero home">
     <div class="hero-body">
-        <div class="container">
+        <div class="container hero-form">
             <h1 class="title">
                 Hero title
             </h1>
-            <h2 class="subtitle">
-                Hero subtitle
-            </h2>
+            <form action="#" class="form">
+                <div class="field">
+                    <div class="control">
+                        <label for="where" class="label">LOCATION:</label>
+                        <input class="input is-primary" type="text" id="where" placeholder="Anywhere">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label for="checkin" class="label">CHECK-IN:</label>
+                        <input class="input is-primary" type="date" id="checkin" placeholder="Anywhere">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label for="checkout" class="label">CHECK-OUT:</label>
+                        <input class="input is-primary" type="date" id="checkout" placeholder="Anywhere">
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </section>
 
-
 {{!-- room listing section --}}
 <section class="section">
     <div class="container is-fluid">
+
+        <div class="notification separator">
+            <p class="title is-3">Featured Rooms</p>
+            <p class="subtitle is-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum eum quidem asperiores. Sint
+                officiis labore delectus cupiditate nam distinctio illum voluptate possimus voluptas exercitationem, temporibus
+                quidem repudiandae, maiores ad. Quam.</p>
+        </div>
         <div class="columns">
             <div class="column">
                 <div class="card">

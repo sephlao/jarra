@@ -8,11 +8,12 @@ const app = express();
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 
-app.use(express.static('public'))
+app.use(express.static('public'));
 
-app.listen(3001, () => {
-    console.log('web app is up and running...');
-})
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Web app is up and running on http://localhost:${PORT}`);
+});
 
 app.get('/', (req, res) => {
     const data = {
@@ -20,4 +21,8 @@ app.get('/', (req, res) => {
         text: 'Hello world this is my home page!'
     }
     res.render('home', data);
-})
+});
+
+app.use((req, res) => {
+    res.status(404).send({ url: req.originalUrl + ' not found' });
+});

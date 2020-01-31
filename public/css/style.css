@@ -5,6 +5,15 @@
 
 :root {
     --border-radius: 4px;
+    --bgc-primary: #273848;
+}
+
+.button.is-primary {
+    background-color: var(--bgc-primary);
+}
+
+.input.is-primary {
+    border-color: var(--bgc-primary);
 }
 
 .navbar-item img {
@@ -34,10 +43,71 @@ header.section {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
-    min-height: 60vh;
-    /* margin-bottom: 2em; */
+    min-height: 90vh;
 }
 
+.footer {
+    background-color: #273848;
+    color: white;
+}
+
+.footer .brand {
+    color: #fafafa;
+}
+
+.footer ul, .content ul ul {
+    list-style: none;
+    margin: 0;
+}
+
+.footer ul li {
+    display: block;
+}
+
+.footer ul li > a {
+    color: #fafafa;
+}
+
+.footer ul li > a:hover {
+    color: #f14668
+}
+
+.footer .control .label {
+    color: #fafafa;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 1.5em;
+}
+
+.container .separator {
+    background-color: transparent;
+    padding: 0;
+}
+
+.hero .hero-form {
+    background-color: white;
+    padding: 3em 2em;
+    border-radius: 4px;
+    max-width: 30em;
+    margin: 3em;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+}
+
+.hero-form .input{
+    background-color: white;
+}
+
+.hero-form .label{
+    font-weight: 600;
+    font-size: small;
+}
+
+.hero-body {
+    backdrop-filter: blur(2px);
+}
 @media screen and (max-width: 1023px){
     .navbar-burger {
         padding: 1.5em;
@@ -73,6 +143,13 @@ header.section {
 @media screen and (max-width: 768px) {
     .columns {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .footer-links .newsletter {
+        grid-column: 1/4;
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr 1fr;
     }
 }
 @media screen and (max-width: 550px) {

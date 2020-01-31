@@ -54,9 +54,43 @@
             </div>
         </nav>
     </header>
-    <main class="main">
+    <main class="main" role="main"> 
         {{{body}}}
     </main>
+
+    <footer class="footer">
+    <div class="container is-fluid content">
+        <ul class="footer-links" role="navigation">
+            <li>
+                <ul>
+                    <li class="footnav-item"><a href="/">Home</a></li>
+                    <li class="footnav-item"><a href="/rooms">Rooms</a></li>
+                    <li class="footnav-item"><a href="/about-us">About Us</a></li>
+                    <li class="footnav-item"><a href="/contact-us">Contact Us</a></li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li class="footnav-item"><a href="#">Terms and Conditions</a></li>
+                    <li class="footnav-item"><a href="#">Privacy Policy</a></li>
+                    <li class="footnav-item"><a href="#">Become a Host</a></li>
+                    <li class="footnav-item"><a href="#">FAQ</a></li>
+                </ul>
+            </li>
+            <li class="newsletter">
+                <div class="field">
+                    <div class="control">
+                        <label for="newsletter" class="label">Subscribe to our newsletter</label>
+                        <input class="input" type="text" id="newsletter" placeholder="john.doe@email.com">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="content has-text-centered">
+        <p><strong class="brand">Balay</strong> by <a href="#">Joseph Lao</a></p>
+    </div>
+    </footer>
 
     <script src="/js/index.js"></script>
 </body>
