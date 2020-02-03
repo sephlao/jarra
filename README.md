@@ -1,4 +1,4 @@
-# nodeapp
+# JARRA (just another room rental app)
 
 ## Tools and Technology
 `HTML`, `CSS`, `Vanilla JS`
