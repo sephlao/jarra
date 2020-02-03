@@ -1,27 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,400i,700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
 }
 
 :root {
+    --font-family: 'Nunito', sans-serif;
     --border-radius: 4px;
     --bgc-primary: #273848;
+    --input-border-color: #aeaeae;
+}
+
+body {
+    font-family: var(--font-family);
 }
 
 .button.is-primary {
     background-color: var(--bgc-primary);
+    padding: .25em 1.5em;
+    box-sizing: content-box;
+    font-weight: 700;
 }
 
 .input.is-primary {
-    border-color: var(--bgc-primary);
+    border-color: var(--input-border-color);
+}
+
+.subtitle {
+    color: #717171;
+}
+
+.navbar {
+    background-color: transparent;
+}
+
+.navbar-menu .navbar-item {
+    color: white;
+    font-weight: 700;
+}
+
+.navbar-menu  .navbar-item:hover {
+    background: none;
+    color: white;
+    border-bottom: white 2px solid;
 }
 
 .navbar-item img {
-    max-height: 3rem;
+    max-height: 2.5rem;
 }
 
 header.section {
-    padding: 1.5em;
+    padding: 0.5em;
+    position: absolute;
+    width: 100%;
 }
 
 .columns {
@@ -39,11 +71,11 @@ header.section {
 }
 
 .hero.home {
-    background-image: url('/img/hero-home-bg.jpg');
+    background-image: url('/img/house-backdrop.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
-    min-height: 90vh;
+    min-height: 100vh;
 }
 
 .footer {
@@ -101,14 +133,47 @@ header.section {
 }
 
 .hero-form .label{
-    font-weight: 600;
+    font-weight: 400;
     font-size: small;
 }
 
 .hero-body {
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(1px);
+    display: grid;
+    align-content: center;
+}
+
+.form-dates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: .5em;
+}
+
+form .field.submit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.image img {
+    object-fit: cover;
+}
+
+.card .content {
+    margin-bottom: .5em;
+}
+
+.card .content p {
+    margin-bottom: .25em;
 }
 @media screen and (max-width: 1023px){
+    .navbar {
+        background-color: transparent;
+    }
+
+    .navbar-brand {
+        background-color: transparent;
+    }
+
     .navbar-burger {
         padding: 1.5em;
     }
@@ -123,7 +188,7 @@ header.section {
     }
     
     .navbar-brand {
-        background-color: white;
+        background-color: transparent;
         z-index: 1;
         position: relative;
     }
@@ -138,6 +203,11 @@ header.section {
         padding: 1.5em;
         overflow: hidden auto;
     }
+
+    header.section {
+        background-color: transparent;
+        margin: .5em auto;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -151,9 +221,17 @@ header.section {
     .footer-links {
         grid-template-columns: 1fr 1fr;
     }
+
+    .form-dates {
+        grid-template-columns: 1fr;
+    }
+
+    .hero .hero-form {
+        margin: 0;
+    }
 }
 @media screen and (max-width: 550px) {
     .columns {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: 1fr;
     }
 }
