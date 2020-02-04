@@ -11,17 +11,22 @@ window.onload = () => {
     const heroBanner = document.querySelector('.hero.home');
     if (heroForm && heroBanner) new AnimateElements([heroForm, heroBanner]);
 
-    const form = new Form();
-    form.defaultDate(document.getElementById('checkin'));
-    form.defaultDate(document.getElementById('checkout'), { plus: 1});
+    // check if path is root
+    if (window.location.pathname == '/') {
+        const form = new Form();
+        form.defaultDate(document.getElementById('checkin'));
+        form.defaultDate(document.getElementById('checkout'), { plus: 1 });
+        document.querySelector('header.section').classList.add('is-home')
+    }
+
 }
 
 class Form {
     constructor() { }
 
-    defaultDate(dateElm, opt = {plus: 0}) {
+    defaultDate(dateElm, opt = { plus: 0 }) {
         let date = new Date();
-        if(opt.plus) date = date.setDate(date.getDate() + 1);
+        if (opt.plus) date = date.setDate(date.getDate() + 1);
         dateElm.valueAsNumber = date.valueOf();
     }
 }

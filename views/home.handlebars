@@ -54,33 +54,6 @@
                 temporibus
                 quidem repudiandae, maiores ad. Quam.</p>
         </div>
-        <div class="columns">
-            {{#each rooms}}
-            <div class="column">
-                <div class="card">
-                    <div class="card-image">
-                        <figure class="image is-4by3">
-                            <img src="{{this.imgURL}}"
-                                alt="{{this.name}}">
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="content">
-                            <div class="media-content">
-                                <p class="title is-4 is-spaced content-name">{{this.name}}</p>
-                                <p class="subtitle is-6 content-location">{{this.location}}</p>
-                            </div>
-                        </div>
-
-                        <div class="content extended-info">
-                            <p class="content-text">{{this.text}}</p>
-                            <strong class="content-price">${{this.price}}/night</strong>
-                            <strong class="content-rating">Stars {{this.rating}}</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{/each}}
-        </div>
+        {{> rooms}}
     </div>
 </section>

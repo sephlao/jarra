@@ -11,6 +11,9 @@
     --border-radius: 4px;
     --bgc-primary: #273848;
     --input-border-color: #aeaeae;
+    --tc-primary: #fafafa;
+    --tc-heading: #363636;
+    --tc-sub-heading: #717171
 }
 
 body {
@@ -29,7 +32,7 @@ body {
 }
 
 .subtitle {
-    color: #717171;
+    color: var(--tc-sub-heading);
 }
 
 .navbar {
@@ -37,25 +40,35 @@ body {
 }
 
 .navbar-menu .navbar-item {
-    color: white;
+    color: var(--tc-primary);
     font-weight: 700;
 }
 
 .navbar-menu  .navbar-item:hover {
     background: none;
-    color: white;
-    border-bottom: white 2px solid;
+    color: var(--tc-primary);
+    border-bottom: var(--tc-primary) 2px solid;
 }
 
 .navbar-item img {
     max-height: 2.5rem;
 }
 
-header.section {
+header.section.is-home {
     padding: 0.5em;
     position: absolute;
     width: 100%;
 }
+
+header.section {
+    padding: 1em;
+    background-color: var(--bgc-primary);
+}
+
+/* header.section .navbar-item{
+    color: var(--tc-heading);
+} */
+
 
 .columns, .columns:not(.is-desktop) {
     display: grid;
@@ -74,23 +87,32 @@ header.section {
 .hero.home {
     background-image: url('/img/house-backdrop.jpg');
     background-repeat: no-repeat;
-    background-size: 125%;
+    background-size: cover;
     background-position: center;
     min-height: 100vh;
-    transition: background-size 1.5s ease;
+    transform: scale(1.5);
+    transition: transform 1.5s ease;
+}
+
+.hero.rooms {
+    background-image: url(/img/hero-rooms-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    min-height: 25em;
 }
 
 .hero.home.animate {
-    background-size: 100%;
+    transform: scale(1);
 }
 
 .footer {
-    background-color: #273848;
-    color: white;
+    background-color: var(--bgc-primary);
+    color: var(--tc-primary);
 }
 
 .footer .brand {
-    color: #fafafa;
+    color: var(--tc-primary);
 }
 
 .footer ul, .content ul ul {
@@ -102,16 +124,17 @@ header.section {
     display: block;
 }
 
-.footer ul li > a {
-    color: #fafafa;
+ a {
+    color: var(--tc-primary);
 }
 
-.footer ul li > a:hover {
-    color: #f14668
+ a:hover:not(.navbar-item) {
+    color: var(--input-border-color);
+    border-bottom: var(--input-border-color) 1px solid;
 }
 
 .footer .control .label {
-    color: #fafafa;
+    color: var(--tc-primary);
 }
 
 .footer-links {
@@ -126,7 +149,7 @@ header.section {
 }
 
 .hero .hero-form {
-    background-color: white;
+    background-color: var(--tc-primary);
     padding: 3em 2em;
     border-radius: 4px;
     max-width: 30em;
@@ -138,7 +161,7 @@ header.section {
 }
 
 .hero-form .input{
-    background-color: white;
+    background-color: var(--tc-primary);
 }
 
 .hero-form .label{
@@ -197,9 +220,9 @@ form .field.submit {
     justify-self: end;
 }
 
-a {
+/* a {
     color: #85a1d0;
-}
+} */
 @media screen and (max-width: 1023px){
     .navbar {
         background-color: transparent;
