@@ -2,23 +2,26 @@
 // import HandleBars from 'express-handlebars';
 const express = require('express');
 const handlebars = require('express-handlebars');
-
+const path = require('path');
+const PORT = process.env.PORT || 3000;
+const ROOMS = require('./data/rooms'); // pretend db fetch for rooms data
 const app = express();
 
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Web app is up and running on http://localhost:${PORT}`);
 });
 
+
 app.get('/', (req, res) => {
     const data = {
         title: 'Home',
-        text: 'Hello world this is my home page!'
+        text: 'Hello world this is my home page!',
+        rooms: ROOMS.data.slice(0, 6)
     }
     res.render('home', data);
 });

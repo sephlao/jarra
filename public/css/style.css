@@ -3,6 +3,7 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 :root {
@@ -56,8 +57,8 @@ header.section {
     width: 100%;
 }
 
-.columns {
-    display: grid !important;
+.columns, .columns:not(.is-desktop) {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
 
@@ -73,9 +74,14 @@ header.section {
 .hero.home {
     background-image: url('/img/house-backdrop.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom;
+    background-size: 125%;
+    background-position: center;
     min-height: 100vh;
+    transition: background-size 1.5s ease;
+}
+
+.hero.home.animate {
+    background-size: 100%;
 }
 
 .footer {
@@ -126,6 +132,9 @@ header.section {
     max-width: 30em;
     margin: 3em;
     box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    opacity: 0;
+    transform: translateX(-35em);
+    transition: opacity, transform 1.5s ease;
 }
 
 .hero-form .input{
@@ -164,6 +173,32 @@ form .field.submit {
 
 .card .content p {
     margin-bottom: .25em;
+}
+
+.hero-form.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.extended-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.extended-info > .content-text {
+    grid-column: 1/3;
+}
+
+.extended-info > .content-price {
+    justify-self: start;
+}
+
+.extended-info > .content-rating {
+    justify-self: end;
+}
+
+a {
+    color: #85a1d0;
 }
 @media screen and (max-width: 1023px){
     .navbar {
@@ -208,10 +243,14 @@ form .field.submit {
         background-color: transparent;
         margin: .5em auto;
     }
+
+    .hero.home.animate {
+        background-size: cover;
+    }
 }
 
 @media screen and (max-width: 768px) {
-    .columns {
+    .columns, .columns:not(.is-desktop) {
         grid-template-columns: repeat(2, 1fr);
     }
     .footer-links .newsletter {
@@ -227,11 +266,11 @@ form .field.submit {
     }
 
     .hero .hero-form {
-        margin: 0;
+        margin: 2em 0 0 0;
     }
 }
 @media screen and (max-width: 550px) {
-    .columns {
+    .columns, .columns:not(.is-desktop){
         grid-template-columns: 1fr;
     }
 }
