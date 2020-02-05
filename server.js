@@ -32,8 +32,12 @@ app.get('/rooms', (req, res) => {
     res.render('rooms', {rooms: ROOMS.data})
 });
 
+app.get('/login', (req, res) => {
+    res.render('login')
+});
+
 app.use((req, res) => {
-    res.status(404).send({ url: req.originalUrl + ' not found' });
+    res.status(404).render('404', { url: req.originalUrl});
 });
 
 // const accountSid = 'your_account_sid';

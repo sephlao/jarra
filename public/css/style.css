@@ -102,6 +102,24 @@ header.section {
     min-height: 25em;
 }
 
+.hero.about {
+    background-image: url(/img/hero-about-bg.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 20em;
+    border-radius: 4px;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+}
+
+.hero.about .button {
+    padding: 1.5em;
+    margin: 0 auto;
+    font-size: 1em;
+    border: none;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+}
+
 .hero.home.animate {
     transform: scale(1);
 }
@@ -220,9 +238,14 @@ form .field.submit {
     justify-self: end;
 }
 
-/* a {
-    color: #85a1d0;
-} */
+.message.is-404 {
+    text-align: center;
+    padding: 2em;
+}
+
+.is-404 .title {
+    font-size: 10em;
+}
 @media screen and (max-width: 1023px){
     .navbar {
         background-color: transparent;
