@@ -13,7 +13,8 @@
     --input-border-color: #aeaeae;
     --tc-primary: #fafafa;
     --tc-heading: #363636;
-    --tc-sub-heading: #717171
+    --tc-sub-heading: #717171;
+    --box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02)
 }
 
 body {
@@ -109,7 +110,7 @@ header.section {
     background-position: center;
     min-height: 20em;
     border-radius: 4px;
-    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    box-shadow: var(--box-shadow);
 }
 
 .hero.about .button {
@@ -117,7 +118,7 @@ header.section {
     margin: 0 auto;
     font-size: 1em;
     border: none;
-    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    box-shadow: var(--box-shadow);
 }
 
 .hero.home.animate {
@@ -172,7 +173,7 @@ header.section {
     border-radius: 4px;
     max-width: 30em;
     margin: 3em;
-    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+    box-shadow: var(--box-shadow);
     opacity: 0;
     transform: translateX(-35em);
     transition: opacity, transform 1.5s ease;
@@ -236,6 +237,14 @@ form .field.submit {
 
 .extended-info > .content-rating {
     justify-self: end;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.content-rating > [alt="star"] {
+    min-width: 1em;
 }
 
 .message.is-404 {
@@ -245,6 +254,13 @@ form .field.submit {
 
 .is-404 .title {
     font-size: 10em;
+}
+
+.login-form {
+    max-width: 30em;
+    box-shadow: var(--box-shadow);
+    padding: 3em;
+    border-radius: 4px;
 }
 @media screen and (max-width: 1023px){
     .navbar {
