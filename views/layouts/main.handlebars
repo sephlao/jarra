@@ -40,12 +40,16 @@
                         Contact us
                     </a>
 
+                    {{#unless user.logged}}
                     <a class="navbar-item">
                         Sign up
                     </a>
+                    {{/unless}}
 
-                    <a class="navbar-item" href="/login">
-                        Log in
+
+                    <a class="navbar-item" {{#if user.logged}} href="/logout" {{/if}}{{#unless user.logged}}href="/login"{{/unless}}>
+                        {{#if user.logged}} Log out ({{user.username}}) {{/if}}
+                        {{#unless user.logged}} Log in {{/unless}}
                     </a>
                 </div>
             </div>

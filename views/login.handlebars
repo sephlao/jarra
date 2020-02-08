@@ -4,17 +4,21 @@
             <h1 class="title">
                 Login
             </h1>
-            <form action="#" class="form">
+            <form action="/login" method="POST" class="form">
                 <div class="field">
                     <div class="control">
                         <label for="username" class="label">Username or email:</label>
-                        <input class="input is-primary" type="text" id="username" placeholder="Username">
+                        <input class="input {{#unless error.username}} is-primary {{/unless}}{{#if error.username}} is-danger {{/if}}"
+                            type="text" name="username" id="username" placeholder="Username" {{#if data.username}} value="{{data.username}}" {{/if}}>
+                        {{#if error.username}} <p class="help is-danger">Username is required!</p> {{/if}}
                     </div>
                 </div>
                 <div class="field">
                     <div class="control">
                         <label for="password" class="label">Password:</label>
-                        <input class="input is-primary" type="password" id="password" placeholder="password">
+                        <input class="input {{#unless error.password}} is-primary {{/unless}}{{#if error.password}} is-danger {{/if}}" 
+                            type="password" name="password" id="password" placeholder="Password" {{#if data.password}} value="{{data.password}}" {{/if}}>
+                        {{#if error.password}} <p class="help is-danger">Password is required!</p> {{/if}}
                     </div>
                 </div>
                 <div class="field submit">

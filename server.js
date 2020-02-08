@@ -8,36 +8,55 @@ const ROOMS = require('./data/rooms'); // pretend db fetch for rooms data
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+const getHomeData = () => ({
+    title: 'Home',
+    rooms: ROOMS.data.slice(0, 3),
+    user: app.get('currentUser')
+});
+
+
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.listen(PORT, () => {
     console.log(`Web app is up and running on http://localhost:${PORT}`);
 });
 
-
 app.get('/', (req, res) => {
-    const data = {
-        title: 'Home',
-        text: 'Hello world this is my home page!',
-        rooms: ROOMS.data.slice(0, 3)
-    }
-    res.render('home', data);
+    res.render('home', { ...getHomeData() });
 });
 
 app.get('/rooms', (req, res) => {
-    res.render('rooms', {rooms: ROOMS.data})
+    res.render('rooms', { rooms: ROOMS.data, user: app.get('currentUser') });
 });
 
-app.get('/login', (req, res) => {
-    res.render('login')
+app.route('/login').get((req, res) => {
+    res.render('login');
+}).post(({ body: { username, password } }, res) => {
+    if (username && password) {
+        app.set('currentUser', { username, password, logged: true });
+        res.redirect('/');
+    } else {
+        res.render('login', {
+            error: {
+                username: !username,
+                password: !password
+            }, data: { username, password }
+        })
+    }
 });
+
+app.get('/logout', (req, res) => {
+    app.set('currentUser', {});
+    res.redirect('/')
+})
 
 app.use((req, res) => {
-    res.status(404).render('404', { url: req.originalUrl});
+    const data = { url: req.originalUrl, user: app.get('currentUser') };
+    res.status(404).render('404', data);
 });
 
 // const accountSid = 'your_account_sid';
