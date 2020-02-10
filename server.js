@@ -33,6 +33,26 @@ app.get('/rooms', (req, res) => {
     res.render('rooms', { rooms: ROOMS.data, user: app.get('currentUser') });
 });
 
+app.route('/register').get((req, res) => {
+    res.render('register');
+}).post(({ body: { firstname, lastname, bday, username, password } }, res) => {
+    if (username && password) {
+        app.set('currentUser', { username, password, logged: true });
+        res.redirect('/');
+    } else {
+        res.render('register', {
+            error: {
+                firstname: !firstname,
+                lastname: !lastname,
+                bday: !bday,
+                username: !username,
+                password: !password,
+                passwordMatch: !(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password))
+            }, data: { firstname, lastname, bday, username, password }
+        })
+    }
+});
+
 app.route('/login').get((req, res) => {
     res.render('login');
 }).post(({ body: { username, password } }, res) => {
