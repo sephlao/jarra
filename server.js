@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.listen(PORT, () => {
-  console.log(`Web app is up and running on http://localhost:${PORT}`);
+	console.log(`Web app is up and running on http://localhost:${PORT}`);
 });
 
 app.use('/', homeController);
@@ -43,18 +43,7 @@ app.use('/contact-us', contactController);
 
 // 404 redirect
 app.use((req, res) => {
-  const data = { url: req.originalUrl, user: app.get('currentUser') };
-  res.status(404).render('404', data);
+	const { getUserInfo } = require('./models/user');
+	const data = { url: req.originalUrl, user: getUserInfo() };
+	res.status(404).render('404', data);
 });
-
-// const accountSid = 'your_account_sid';
-// const authToken = 'your_auth_token';
-// const client = require('twilio')(accountSid, authToken);
-
-// client.messages
-//   .create({
-//      body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-//      from: '+15017122661',
-//      to: '+15558675310'
-//    })
-//   .then(message => console.log(message.sid));

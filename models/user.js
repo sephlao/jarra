@@ -1,8 +1,9 @@
 let user = require('../data/user'); // fake db
-module.exports = () => {
-  const getUserInfo = () => ({ ...user });
-
-  const setUserInfo = data => (user = { ...data });
-
-  return { getUserInfo, setUserInfo };
+module.exports = {
+	getUserInfo() {
+		return { ...user };
+	},
+	setUserInfo(data) {
+		return (user = { ...data });
+	}
 };

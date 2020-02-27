@@ -8,43 +8,76 @@
                 <div class="field">
                     <div class="control">
                         <label for="firstname" class="label">First name:</label>
-                        <input class="input {{#unless error.firstname}} is-primary {{/unless}}{{#if error.firstname}} is-danger {{/if}}" 
-                            type="text" name="firstname" id="firstname" placeholder="John" {{#if data.firstname}} value="{{data.firstname}}" {{/if}}>
+                        <input
+                            class="input {{#unless error.firstname}} is-primary {{/unless}}{{#if error.firstname}} is-danger {{/if}}"
+                            type="text" name="firstname" id="firstname" placeholder="John" {{#if data.firstname}}
+                            value="{{data.firstname}}" {{/if}}>
                         {{#if error.firstname}} <p class="help is-danger">First name is required!</p> {{/if}}
                     </div>
                 </div>
                 <div class="field">
                     <div class="control">
                         <label for="lastname" class="label">Last name:</label>
-                        <input class="input {{#unless error.lastname}} is-primary {{/unless}}{{#if error.lastname}} is-danger {{/if}}" 
-                            type="text" name="lastname" id="lastname" placeholder="Doe" {{#if data.lastname}} value="{{data.lastname}}" {{/if}}>
+                        <input
+                            class="input {{#unless error.lastname}} is-primary {{/unless}}{{#if error.lastname}} is-danger {{/if}}"
+                            type="text" name="lastname" id="lastname" placeholder="Doe" {{#if data.lastname}}
+                            value="{{data.lastname}}" {{/if}}>
                         {{#if error.lastname}} <p class="help is-danger">Last name is required!</p> {{/if}}
                     </div>
                 </div>
                 <div class="field">
                     <div class="control">
                         <label for="bday" class="label">Birthday:</label>
-                        <input class="input is-primary" 
-                            type="date" name="bday" id="bday" {{#if data.bday}} value="{{data.bday}}" {{/if}}>
+                        <input class="input is-primary" type="date" name="bday" id="bday" {{#if data.bday}}
+                            value="{{data.bday}}" {{/if}}>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label for="phonenumber" class="label">Phone number:</label>
+                        <input
+                            class="input {{#unless error.phonenumber}} is-primary {{/unless}}{{#if error.phonenumber}} is-danger {{/if}}"
+                            type="number" name="phonenumber" id="phonenumber" placeholder="647-XXX-XXXX"
+                            {{#if data.phonenumber}} value="{{data.phonenumber}}" {{/if}}>
+                        {{#if error.phonenumber}} <p class="help is-danger">Phone number is required!</p> {{/if}}
                     </div>
                 </div>
                 <div class="field">
                     <div class="control">
                         <label for="username" class="label">Username or email:</label>
-                        <input class="input {{#unless error.username}} is-primary {{/unless}}{{#if error.username}} is-danger {{/if}}"
-                            type="text" name="username" id="username" placeholder="Username" {{#if data.username}} value="{{data.username}}" {{/if}}>
+                        <input
+                            class="input {{#unless error.username}} is-primary {{/unless}}{{#if error.username}} is-danger {{/if}}"
+                            type="text" name="username" id="username" placeholder="Username" {{#if data.username}}
+                            value="{{data.username}}" {{/if}}>
                         {{#if error.username}} <p class="help is-danger">Username is required!</p> {{/if}}
                     </div>
                 </div>
                 <div class="field">
                     <div class="control">
                         <label for="password" class="label">Password:</label>
-                        <input class="input {{#unless error.password}} is-primary {{/unless}}{{#if error.password}} is-danger {{/if}}" 
-                            type="password" name="password" id="password" placeholder="Password" {{#if data.password}} value="{{data.password}}" {{/if}}>
+                        <input
+                            class="input {{#unless error.password}} is-primary {{/unless}}{{#if error.password}} is-danger {{/if}}"
+                            type="password" name="password" id="password" placeholder="Password" {{#if data.password}}
+                            value="{{data.password}}" {{/if}}>
                         {{#if error.password}} <p class="help is-danger">Password is required!</p> {{/if}}
-                        {{#if error.passwordMatch}} <p class="help is-danger">Password should be minimum of eight characters, at least one letter and one numbe.</p> {{/if}}
+                        {{#if error.passwordMatch}} <p class="help is-danger">Password should be minimum of eight
+                            characters, at least one letter and one numbe.</p> {{/if}}
                     </div>
                 </div>
+                {{#if data.showCode}}
+                <div class="field">
+                    <div class="control">
+                        <label for="code" class="label">Code:</label>
+                        <input
+                            class="input {{#unless error.code}} is-primary {{/unless}}{{#if error.code}} is-danger {{/if}}"
+                            type="number" name="code" id="code" placeholder="Code" {{#if data.code}}
+                            value="{{data.code}}" {{/if}}>
+                        <input type="checkbox" name="showCode" hidden="true" {{#if data.showCode}} checked {{/if}} />
+                        {{#if error.code}} <p class="help is-danger">Code is required!</p> {{/if}}
+                        {{#if error.codeMatch}} <p class="help is-danger">Code did not match!</p> {{/if}}
+                    </div>
+                </div>
+                {{/if}}
                 <div class="field submit">
                     <div class="control">
                         <button type="submit" class="button is-primary">Login</button>
