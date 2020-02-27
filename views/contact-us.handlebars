@@ -1,0 +1,47 @@
+<section class="section">
+    <div class="container is-fluid">
+        <div class="container login-form">
+            <h1 class="title">
+                Contact Us
+            </h1>
+            <form action="/contact-us" method="POST" class="form">
+                <div class="field">
+                    <div class="control">
+                        <label for="name" class="label">Name:</label>
+                        <input
+                            class="input {{#unless error.name}} is-primary {{/unless}}{{#if error.name}} is-danger {{/if}}"
+                            type="text" name="name" id="name" placeholder="John Doe" {{#if data.name}}
+                            value="{{data.name}}" {{/if}}>
+                        {{#if error.name}} <p class="help is-danger">Name is required!</p> {{/if}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label for="email" class="label">Email:</label>
+                        <input
+                            class="input {{#unless error.email}} is-primary {{/unless}}{{#if error.email}} is-danger {{/if}}"
+                            type="text" name="email" id="email" placeholder="sample@email.com" {{#if data.email}}
+                            value="{{data.email}}" {{/if}}>
+                        {{#if error.email}} <p class="help is-danger">Email is required!</p> {{/if}}
+                        {{#if error.emailInvalid}} <p class="help is-danger">Email is invalid!</p> {{/if}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label for="message" class="label">Message:</label>
+                        <textarea rows="5" cols="33"
+                            class="textarea {{#unless error.message}} is-primary {{/unless}}{{#if error.message}} is-danger {{/if}}"
+                            name="message" id="message"
+                            placeholder="Write your message here...">{{data.message}}</textarea>
+                        {{#if error.message}} <p class="help is-danger">Message is required!</p> {{/if}}
+                    </div>
+                </div>
+                <div class="field submit">
+                    <div class="control">
+                        <button type="submit" class="button is-primary">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

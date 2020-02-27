@@ -10,10 +10,14 @@ const roomController = require('./controllers/room-listing');
 const registerController = require('./controllers/register');
 const loginController = require('./controllers/login');
 const logoutController = require('./controllers/logout');
+const contactController = require('./controllers/contact-us');
 
 // setup
 const PORT = process.env.PORT || 3000;
 const app = express();
+
+// load local env
+require('dotenv').config({ path: './config.env' });
 
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
@@ -34,6 +38,8 @@ app.use('/register', registerController);
 app.use('/login', loginController);
 
 app.use('/logout', logoutController);
+
+app.use('/contact-us', contactController);
 
 // 404 redirect
 app.use((req, res) => {
