@@ -11,7 +11,7 @@ router
 		res.render('register');
 	})
 	.post((req, res) => {
-		const { firstname, lastname, bday, username, password, phonenumber, code, showCode } = req.body;
+		const { firstname, lastname, email, username, password, phonenumber, code, showCode } = req.body;
 
 		// if all mandatory fields have data (server-side validation)
 		if (firstname && lastname && username && password && checkPasswordValidity(password)) {
@@ -40,7 +40,16 @@ router
 					res.render('register', { error: { codeMatch: true }, data: { ...req.body } });
 				} else {
 					setUserInfo({ username, password, logged: true });
-					res.redirect('/');
+					const sgMail = require('./send-email');
+					sgMail({
+						to: email,
+						from: 'admin@balay.email',
+						subject: `Welcom to Balay ${firstname} ${lastname}!`,
+						html: `<div><p>Hey there ${firstname},</p><p>Thanks for signing-up.
+						We will be sending push notifications about your account and future deals in this email.</p></div>`
+					})
+						.then(() => res.redirect('/dashboard'))
+						.catch(console.error);
 				}
 			}
 		} else {
@@ -51,6 +60,8 @@ router
 					username: !username,
 					phonenumber: !phonenumber,
 					password: !password,
+					email: !email,
+					emailInvalid: !/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(email),
 					passwordMatch: !checkPasswordValidity(password)
 				},
 				data: { ...req.body }

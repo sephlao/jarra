@@ -14,17 +14,14 @@ router
 		const checkValidEmail = email => /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(email);
 		if (name && email && message && checkValidEmail(email)) {
 			// send email
-			console.log('send email...');
-			const sgMail = require('@sendgrid/mail');
-			sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-			sgMail
-				.send({
-					to: 'jvincentlao15@gmail.com',
-					from: email,
-					subject: `Contact Us | ${name}`,
-					text: `${message}`
-					// html: `<strong>${message}</strong>`
-				})
+			const sgMail = require('./send-email');
+			sgMail({
+				to: 'jvincentlao15@gmail.com',
+				from: email,
+				subject: `Contact Us | ${name}`,
+				text: `${message}`
+				// html: `<strong>${message}</strong>`
+			})
 				.then(() => res.redirect('/'))
 				.catch(console.error);
 		} else {
