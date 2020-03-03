@@ -295,19 +295,28 @@ form .field.submit {
         position: fixed;
         visibility: visible;
         z-index: 0;
-        width: 100%;
+        width: 110%;
         margin: -1.5em;
         padding: 1.5em;
         overflow: hidden auto;
+        background-color: #273848;
     }
 
     header.section {
-        background-color: transparent;
-        margin: .5em auto;
+        background-color: #273848;
+        /* margin: .5em auto; */
     }
 
     .hero.home.animate {
         background-size: cover;
+    }
+
+
+    .navbar-burger span {
+        color: white
+    }
+    header.section.is-home{
+        background-color: #273848;
     }
 }
 
