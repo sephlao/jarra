@@ -11,6 +11,7 @@ const registerController = require('./controllers/register');
 const loginController = require('./controllers/login');
 const logoutController = require('./controllers/logout');
 const contactController = require('./controllers/contact-us');
+const dashboardController = require('./controllers/dashboard');
 
 // setup
 const PORT = process.env.PORT || 3000;
@@ -40,6 +41,8 @@ app.use('/login', loginController);
 app.use('/logout', logoutController);
 
 app.use('/contact-us', contactController);
+
+app.use('/dashboard', dashboardController);
 
 // 404 redirect
 app.use((req, res) => {
