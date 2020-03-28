@@ -1,10 +1,10 @@
 const express = require('express');
 const { getFeaturedProducts } = require('../models/rooms');
-const { getUserInfo } = require('../models/user');
+const { getLoggedUser } = require('../data/session');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    const user = getUserInfo();
+    const user = getLoggedUser();
 	res.render('dashboard', {
 		title: `Dashboard | ${user.username}` ,
 		rooms: getFeaturedProducts(),

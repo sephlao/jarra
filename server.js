@@ -3,6 +3,7 @@ const express = require('express');
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
+const mongoose = require('mongoose');
 
 // controllers
 const homeController = require('./controllers/home');
@@ -19,6 +20,11 @@ const app = express();
 
 // load local env
 require('dotenv').config({ path: './config.env' });
+
+mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(() => {
+	console.log('DB connected...');
+}).catch(console.error);
 
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
@@ -46,7 +52,7 @@ app.use('/dashboard', dashboardController);
 
 // 404 redirect
 app.use((req, res) => {
-	const { getUserInfo } = require('./models/user');
-	const data = { url: req.originalUrl, user: getUserInfo() };
+	const { getLoggedUser } = require('./data/session');
+	const data = { url: req.originalUrl, user: getLoggedUser() };
 	res.status(404).render('404', data);
 });

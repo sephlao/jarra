@@ -1,13 +1,13 @@
 const express = require('express');
 const { getFeaturedProducts } = require('../models/rooms');
-const { getUserInfo } = require('../models/user');
+const { getLoggedUser } = require('../data/session');
 const router = express.Router();
 
 router.get('/', (req, res) => {
 	res.render('home', {
 		title: 'Home',
 		rooms: getFeaturedProducts(),
-		user: getUserInfo()
+		user: getLoggedUser()
 	});
 });
 
