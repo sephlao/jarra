@@ -2,7 +2,7 @@
 
 ## Tools and Technology
 `HTML`, `CSS`, `Vanilla JS`
-`Node.js`, `Express.js`, `Handlebars`, `Bulma`
+`Node.js`, `Express.js`, `Handlebars`, `Bulma`, `Bcryptjs`, `Nodemon`
 
 ## 3rd Party Services
 - [Twilio](https://www.twilio.com) - for sending text message
