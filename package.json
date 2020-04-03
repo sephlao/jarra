@@ -1,31 +1,33 @@
 {
-  "name": "jarra",
-  "version": "1.0.0",
-  "description": "Basic room renting app using node, express, and handlebars",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "keywords": [
-    "node",
-    "express",
-    "handlebars"
-  ],
-  "author": "Joseph Lao",
-  "license": "ISC",
-  "dependencies": {
-    "@sendgrid/mail": "^6.5.3",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-handlebars": "^3.1.0",
-    "mongoose": "^5.9.6",
-    "twilio": "^3.39.3"
-  },
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "prettier": "^1.19.1"
-  }
+	"name": "jarra",
+	"version": "1.0.0",
+	"description": "Basic room renting app using node, express, and handlebars",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "nodemon server.js"
+	},
+	"keywords": [
+		"node",
+		"express",
+		"handlebars"
+	],
+	"author": "Joseph Lao",
+	"license": "ISC",
+	"dependencies": {
+		"@sendgrid/mail": "^6.5.3",
+		"bcryptjs": "^2.4.3",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"express-handlebars": "^3.1.0",
+		"mongoose": "^5.9.6",
+		"nodemon": "^2.0.2",
+		"twilio": "^3.39.3"
+	},
+	"devDependencies": {
+		"eslint": "^6.8.0",
+		"eslint-config-prettier": "^6.10.0",
+		"eslint-plugin-prettier": "^3.1.2",
+		"prettier": "^1.19.1"
+	}
 }

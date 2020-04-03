@@ -61,6 +61,7 @@
                             type="text" name="username" id="username" placeholder="Username" {{#if data.username}}
                             value="{{data.username}}" {{/if}}>
                         {{#if error.username}} <p class="help is-danger">Username is required!</p> {{/if}}
+                        {{#if error.usernameExist}} <p class="help is-danger">Username already exist!</p> {{/if}}
                     </div>
                 </div>
                 <div class="field">
