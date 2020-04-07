@@ -1,5 +1,4 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
 const UserModel = require('../models/user');
 const { setLoggedUser } = require('../data/session');
 
@@ -52,8 +51,7 @@ router
 				if (parseInt(code) !== generatedCode) {
 					res.render('register', { error: { codeMatch: true }, data: { ...req.body } });
 				} else {
-					const hashPass = bcrypt.hashSync(password, 8);
-					new UserModel({ ...req.body, birthday: bday, password: hashPass })
+					new UserModel({ ...req.body, birthday: bday })
 						.save()
 						.then(() => {
 							console.log('data saved...');

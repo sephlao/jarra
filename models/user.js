@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -29,7 +31,30 @@ const userSchema = new Schema({
 	password: {
 		type: String,
 		required: true
+	},
+	accountType: {
+		type: String,
+		default: 'REGULAR'
+	},
+	dateCreated: {
+		type: Date,
+		default: Date.now()
 	}
+});
+
+userSchema.pre('save', function(next) {
+	bcrypt
+		.genSalt(10)
+		.then(salt => {
+			bcrypt
+				.hash(this.password, salt)
+				.then(hash => {
+					this.password = hash;
+					next();
+				})
+				.catch(er => console.error(`Error while hashing password ${err}`));
+		})
+		.catch(er => console.error(`Error while salthing${err}`));
 });
 
 const UserModel = mongoose.model('User', userSchema);
