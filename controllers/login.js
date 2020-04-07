@@ -1,6 +1,7 @@
 const express = require('express');
-const { setUserInfo } = require('../models/user');
-
+const UserModel = require('../models/user');
+const { setLoggedUser } = require('../data/session');
+const bcrypt = require('bcryptjs');
 const router = express.Router();
 
 router
@@ -8,11 +9,30 @@ router
 	.get((req, res) => {
 		res.render('login');
 	})
-	.post(({ body: { username, password } }, res) => {
+	.post(async (req, res) => {
+		const {
+			body: { username, password }
+		} = req;
 		if (username && password) {
-			//   router.set('currentUser', );
-			setUserInfo({ username, password, logged: true });
-			res.redirect('/');
+			const user = await UserModel.findOne({ username });
+			if (!user) {
+				res.render('login', {
+					error: { message: `Sorry, we can not find  user ${username}` },
+					data: { username, password }
+				});
+			} else {
+				const isMatched = await bcrypt.compare(password, user.password);
+				if (isMatched) {
+					req.session.currentUser = user;
+					res.redirect('/dashboard');
+				} else {
+					res.render('login', {
+						error: { message: 'Username and password did not match' },
+						data: { username, password }
+					});
+				}
+			}
+			console.log('hmmm');
 		} else {
 			res.render('login', {
 				error: {

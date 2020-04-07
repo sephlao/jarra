@@ -31,18 +31,18 @@ router
 				const client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 				generatedCode = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
 
-				client.messages
-					.create({
-						body: `Your verification code is ${generatedCode}`,
-						from: process.env.TWILIO_NO,
-						to: phonenumber
-					})
-					.then(msg => {
-						// if all fields valid show code input
-						res.render('register', { data: { ...req.body, showCode: true } });
-						console.log(`Message sent ${msg.sid}`);
-					})
-					.catch(console.error);
+				// client.messages
+				// 	.create({
+				// 		body: `Your verification code is ${generatedCode}`,
+				// 		from: process.env.TWILIO_NO,
+				// 		to: phonenumber
+				// 	})
+				// 	.then(msg => {
+				// if all fields valid show code input
+				res.render('register', { data: { ...req.body, showCode: true } });
+				// 	console.log(`Message sent ${msg.sid}`);
+				// })
+				// .catch(console.error);
 				console.log(generatedCode);
 			} else if (showCode && !code) {
 				// if code input is empty throw error
@@ -53,7 +53,7 @@ router
 				} else {
 					new UserModel({ ...req.body, birthday: bday })
 						.save()
-						.then(() => {
+						.then(user => {
 							console.log('data saved...');
 							const sgMail = require('./send-email');
 							sgMail({
@@ -64,7 +64,8 @@ router
 								We will be sending push notifications about your account and future deals in this email.</p></div>`
 							})
 								.then(() => {
-									setLoggedUser({ username, password, logged: true });
+									// setLoggedUser({ username, password, logged: true });
+									req.session.currentUser = user;
 									res.redirect('/dashboard');
 								})
 								.catch(e => console.error('Something went wrong while sending the email', e));

@@ -1,14 +1,14 @@
 const express = require('express');
 const { getFeaturedProducts } = require('../models/rooms');
-const { getLoggedUser } = require('../data/session');
+const filterUserData = require('../data/user');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    const user = getLoggedUser();
+	const user = filterUserData(req.session.currentUser);
 	res.render('dashboard', {
-		title: `Dashboard | ${user.username}` ,
+		title: `Dashboard | ${user.firstname} ${user.lastname}`,
 		rooms: getFeaturedProducts(),
-		user
+		user: user
 	});
 });
 

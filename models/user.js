@@ -36,6 +36,9 @@ const userSchema = new Schema({
 		type: String,
 		default: 'REGULAR'
 	},
+	profpic: {
+		type: String
+	},
 	dateCreated: {
 		type: Date,
 		default: Date.now()

@@ -4,6 +4,8 @@ const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
+const fileUpload = require('express-fileupload');
+const session = require('express-session');
 
 // controllers
 const homeController = require('./controllers/home');
@@ -21,16 +23,26 @@ const app = express();
 // load local env
 require('dotenv').config({ path: './config.env' });
 
-mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true})
-.then(() => {
-	console.log('DB connected...');
-}).catch(console.error);
+mongoose
+	.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
+	.then(() => {
+		console.log('DB connected...');
+	})
+	.catch(console.error);
 
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(fileUpload());
+
+app.use(session({ secret: `${process.env.SESSION_SECRET}`, resave: false, saveUninitialized: true }));
+
+app.use((req, res, next) => {
+	res.locals.currentUser = req.session.currentUser;
+	next();
+});
 
 app.listen(PORT, () => {
 	console.log(`Web app is up and running on http://localhost:${PORT}`);
