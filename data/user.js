@@ -1,4 +1,4 @@
-module.exports = function filterUserData(u) {
+const filterUserData = u => {
 	return u
 		? {
 				id: u._id,
@@ -11,3 +11,5 @@ module.exports = function filterUserData(u) {
 		  }
 		: null;
 };
+
+module.exports = filterUserData;

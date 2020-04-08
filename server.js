@@ -16,6 +16,8 @@ const logoutController = require('./controllers/logout');
 const contactController = require('./controllers/contact-us');
 const dashboardController = require('./controllers/dashboard');
 
+const filterUserData = require('./data/user');
+
 // setup
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -40,7 +42,7 @@ app.use(fileUpload());
 app.use(session({ secret: `${process.env.SESSION_SECRET}`, resave: false, saveUninitialized: true }));
 
 app.use((req, res, next) => {
-	res.locals.currentUser = req.session.currentUser;
+	res.locals.currentUser = filterUserData(req.session.currentUser);
 	next();
 });
 
@@ -64,7 +66,6 @@ app.use('/dashboard', dashboardController);
 
 // 404 redirect
 app.use((req, res) => {
-	const { getLoggedUser } = require('./data/session');
-	const data = { url: req.originalUrl, user: getLoggedUser() };
+	const data = { url: req.originalUrl, user: res.locals.currentUser };
 	res.status(404).render('404', data);
 });
