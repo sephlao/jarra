@@ -4,6 +4,69 @@
             <p class="title is-2">Dashboard</p>
             <p class="subtitle is-4">Welcome to your dashboard {{user.firstname}}!</p>
         </div>
+
+        <div class="profile-wrapper">
+            <div class="profile">
+                <ul>
+                    <li>
+                        <img {{#if user.profpic}} src="./img/uploads/profile/{{user.profpic}}" {{/if}}
+                            {{#unless user.profpic}} src="./img/uploads/profile/default_profpic.jpg" {{/unless}}
+                            class="profpic" alt="{{user.firstname}} profile picture">
+                    </li>
+                    <li><strong>First name: </strong>{{user.firstname}}</li>
+                    <li><strong>Last name: </strong>{{user.lastname}}</li>
+                    <li><strong>Email: </strong>{{user.email}}</li>
+                    <li><strong>Phone number: </strong>{{user.phonenumber}}</li>
+                    <li><a href="/dashboard/edit/profile/{{user.id}}" class="button is-primary">Edit profile</a></li>
+                </ul>
+            </div>
+
+            <div class="add-room">
+                <p class="title is-4">ADD ROOMS</p>
+                <form action="/dashboard/add/room" method="POST" class="form" enctype="multipart/form-data">
+                    <div class="field">
+                        <label for="name" class="label">Property name:</label>
+                        <input class="input is-primary" type="text" name="name" id="name" placeholder="Park towers"
+                            required>
+                    </div>
+                    <div class="field">
+                        <label for="location" class="label">Location:</label>
+                        <input class="input is-primary" type="text" name="location" id="location"
+                            placeholder="Toronto, ON, Canada" required>
+                    </div>
+                    <div class="field">
+                        <label for="text" class="label">Description:</label>
+                        <textarea class="input is-primary" name="text" id="text" required></textarea>
+                    </div>
+                    <div class="field">
+                        <label for="price" class="label">Price in CAD ($):</label>
+                        <input class="input is-primary" type="number" name="price" id="price" placeholder="125"
+                            required>
+                    </div>
+                    <div class="field">
+                        <label for="guest" class="label">Number of guest:</label>
+                        <input class="input is-primary" type="number" name="guest" id="guest" placeholder="2" required>
+                    </div>
+                    <div class="field">
+                        <label for="tag" class="label">Tags:</label>
+                        <select class="input is-primary" name="tag" id="tag" multiple>
+                            <option value="NEW" selected="true">New</option>
+                            <option value="FEATURED">Feature</option>
+                            <option value="SALE">On Sale</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="image" class="label">Image:</label>
+                        <input class="input is-primary" type="file" name="image" id="image" required>
+                    </div>
+                    <div class="field submit">
+                        <div class="control">
+                            <button type="submit" class="button is-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </section>
 

@@ -6,6 +6,8 @@ const filterUserData = u => {
 				lastname: u.lastname,
 				username: u.username,
 				profpic: u.profpic,
+				email: u.email,
+				phonenumber: u.phonenumber,
 				accountType: u.accountType,
 				logged: true
 		  }

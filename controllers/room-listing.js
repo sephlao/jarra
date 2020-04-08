@@ -1,11 +1,11 @@
 const express = require('express');
-const { getAllProducts } = require('../models/rooms');
+const { getAllRooms } = require('../utils/room');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
 	res.render('rooms', {
 		title: 'Room Listing',
-		rooms: getAllProducts(),
+		rooms: await getAllRooms(),
 		user: res.locals.currentUser
 	});
 });

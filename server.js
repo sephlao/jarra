@@ -1,11 +1,13 @@
 // 3rd party modules
 const express = require('express');
-const handlebars = require('express-handlebars');
+const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
 const session = require('express-session');
+const Handlebars = require('handlebars');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 
 // controllers
 const homeController = require('./controllers/home');
@@ -16,7 +18,7 @@ const logoutController = require('./controllers/logout');
 const contactController = require('./controllers/contact-us');
 const dashboardController = require('./controllers/dashboard');
 
-const filterUserData = require('./data/user');
+const filterUserData = require('./utils/user');
 
 // setup
 const PORT = process.env.PORT || 3000;
@@ -32,7 +34,12 @@ mongoose
 	})
 	.catch(console.error);
 
-app.engine('handlebars', handlebars());
+const hbs = exphbs.create({
+	defaultLayout: 'main',
+	extname: 'handlebars',
+	handlebars: allowInsecurePrototypeAccess(Handlebars)
+});
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.static(path.join(__dirname, 'public')));

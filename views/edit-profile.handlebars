@@ -1,0 +1,74 @@
+<section class="section">
+    <div class="container is-fluid">
+        <div class="container login-form">
+            <h1 class="title">
+                Edit user profile
+            </h1>
+            <form action="/dashboard/edit/profile" method="POST" class="form" enctype="multipart/form-data">
+                <div class="field">
+                    <div class="control">
+                        <label for="firstname" class="label">First name:</label>
+                        <input
+                            class="input {{#unless error.firstname}} is-primary {{/unless}}{{#if error.firstname}} is-danger {{/if}}"
+                            type="text" name="firstname" id="firstname" placeholder="John" {{#if data.firstname}}
+                            value="{{data.firstname}}" {{/if}}>
+                        {{#if error.firstname}} <p class="help is-danger">First name is required!</p> {{/if}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label for="lastname" class="label">Last name:</label>
+                        <input
+                            class="input {{#unless error.lastname}} is-primary {{/unless}}{{#if error.lastname}} is-danger {{/if}}"
+                            type="text" name="lastname" id="lastname" placeholder="Doe" {{#if data.lastname}}
+                            value="{{data.lastname}}" {{/if}}>
+                        {{#if error.lastname}} <p class="help is-danger">Last name is required!</p> {{/if}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label for="bday" class="label">Birthday:</label>
+                        <input class="input is-primary" type="date" name="bday" id="bday" {{#if data.bday}}
+                            value="{{data.bday}}" {{/if}}>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label for="phonenumber" class="label">Phone number:</label>
+                        <input
+                            class="input {{#unless error.phonenumber}} is-primary {{/unless}}{{#if error.phonenumber}} is-danger {{/if}}"
+                            type="number" name="phonenumber" id="phonenumber" placeholder="647-XXX-XXXX"
+                            {{#if data.phonenumber}} value="{{data.phonenumber}}" {{/if}}>
+                        {{#if error.phonenumber}} <p class="help is-danger">Phone number is required!</p> {{/if}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label for="email" class="label">Email:</label>
+                        <input
+                            class="input {{#unless error.email}} is-primary {{/unless}}{{#if error.email}} is-danger {{/if}}"
+                            type="text" name="email" id="email" placeholder="sample@email.com" {{#if data.email}}
+                            value="{{data.email}}" {{/if}}>
+                        {{#if error.email}} <p class="help is-danger">Email is required!</p> {{/if}}
+                        {{#if error.emailInvalid}} <p class="help is-danger">Email is invalid!</p> {{/if}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label for="profpic" class="label">Profile picture:</label>
+                        <input
+                            class="input {{#unless error.profpic}} is-primary {{/unless}}{{#if error.profpic}} is-danger {{/if}}"
+                            type="file" name="profpic" id="profpic" {{#if data.profpic}} value="{{data.profpic}}"
+                            {{/if}} accept="image/png, image/jpeg, image/gif">
+                        {{#if error.profpic}} <p class="help is-danger">profpic is required!</p> {{/if}}
+                    </div>
+                </div>
+                <div class="field submit">
+                    <div class="control">
+                        <button type="submit" class="button is-primary">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
