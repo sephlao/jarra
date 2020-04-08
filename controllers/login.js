@@ -24,7 +24,8 @@ router
 				const isMatched = await bcrypt.compare(password, user.password);
 				if (isMatched) {
 					req.session.currentUser = user;
-					res.redirect('/dashboard');
+					if (user.accountType === 'ADMIN') res.redirect('/dashboard');
+					else res.redirect('/');
 				} else {
 					res.render('login', {
 						error: { message: 'Username and password did not match' },
@@ -32,7 +33,6 @@ router
 					});
 				}
 			}
-			console.log('hmmm');
 		} else {
 			res.render('login', {
 				error: {

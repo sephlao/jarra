@@ -64,9 +64,9 @@ router
 								We will be sending push notifications about your account and future deals in this email.</p></div>`
 							})
 								.then(() => {
-									// setLoggedUser({ username, password, logged: true });
 									req.session.currentUser = user;
-									res.redirect('/dashboard');
+									if (user.accountType === 'ADMIN') res.redirect('/dashboard');
+									else res.redirect('/');
 								})
 								.catch(e => console.error('Something went wrong while sending the email', e));
 						})
