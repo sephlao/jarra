@@ -282,6 +282,29 @@ form .field.submit {
 	object-fit: cover;
 }
 
+.container.room {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin: 5em 0;
+}
+
+.link {
+	padding: 2em 0;
+	font-size: 1.25em;
+	font-weight: bold;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.link > .is-primary {
+	color: darkgreen;
+}
+
+.link > .is-danger {
+	color: darkred;
+}
+
 @media screen and (max-width: 1023px) {
 	.navbar {
 		background-color: transparent;
@@ -352,16 +375,14 @@ form .field.submit {
 		grid-template-columns: 1fr 1fr;
 	}
 
-	.form-dates {
+	.form-dates,
+	.container.room,
+	.profile-wrapper {
 		grid-template-columns: 1fr;
 	}
 
 	.hero .hero-form {
 		margin: 2em 0 0 0;
-	}
-
-	.profile-wrapper {
-		grid-template-columns: 1fr;
 	}
 }
 @media screen and (max-width: 550px) {

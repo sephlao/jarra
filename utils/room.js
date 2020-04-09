@@ -14,9 +14,12 @@ const setNewRoom = async room => {
 	}
 };
 
+const getRoomById = async id => await RoomModel.findById({ _id: id });
+
 module.exports = {
 	getAllRooms,
 	getFeaturedRooms,
 	getAvailableRooms,
-	setNewRoom
+	setNewRoom,
+	getRoomById
 };
