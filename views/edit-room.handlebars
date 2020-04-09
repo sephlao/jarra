@@ -1,0 +1,52 @@
+{{!-- to-do create partial room form (add/edit) --}}
+<section class="section">
+    <div class="container is-fluid">
+        <div class="add-room">
+            <p class="title is-4">Edit Room</p>
+            <form action="/rooms/update/{{room.id}}" method="POST" class="form" enctype="multipart/form-data">
+                <div class="field">
+                    <label for="name" class="label">Property name:</label>
+                    <input class="input is-primary" type="text" name="name" id="name" placeholder="Park towers"
+                        value="{{room.name}}" required>
+                </div>
+                <div class="field">
+                    <label for="location" class="label">Location:</label>
+                    <input class="input is-primary" type="text" name="location" id="location"
+                        placeholder="Toronto, ON, Canada" value="{{room.location}}" required>
+                </div>
+                <div class="field">
+                    <label for="text" class="label">Description:</label>
+                    <textarea class="input is-primary" name="text" id="text" required>{{room.text}}</textarea>
+                </div>
+                <div class="field">
+                    <label for="price" class="label">Price in CAD ($):</label>
+                    <input class="input is-primary" type="number" name="price" id="price" placeholder="125"
+                        value="{{room.price}}" required>
+                </div>
+                <div class="field">
+                    <label for="guest" class="label">Number of guest:</label>
+                    <input class="input is-primary" type="number" name="guest" id="guest" placeholder="2"
+                        value="{{room.guest}}" required>
+                </div>
+                <div class="field">
+                    <label for="tag" class="label">Tags:</label>
+                    <select class="input is-primary" name="tag" id="tag" multiple>
+                        {{#each tags}}
+                        <option value="{{this.value}}" selected="{{this.selected}}">{{this.value}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="image" class="label">Image:</label>
+                    <input class="input is-primary" type="file" name="image" id="image"
+                        accept="image/png, image/jpeg, image/gif" required>
+                </div>
+                <div class="field submit">
+                    <div class="control">
+                        <button type="submit" class="button is-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

@@ -19,6 +19,13 @@
                     {{/each}}
                 </ul>
             </p>
+
+            {{#if user.isAdmin}}
+            <div class="link">
+                <a href="/rooms/update/{{room.id}}" class="is-primary">Update</a>
+                <a data-roomId="{{room.id}}" class="is-danger">Remove</a>
+            </div>
+            {{/if}}
         </div>
 
         <div class="reserve">

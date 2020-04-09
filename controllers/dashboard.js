@@ -1,13 +1,13 @@
 const express = require('express');
 const path = require('path');
 
-const isAuthenticated = require('../middleware/auth');
+const { isAdmin } = require('../middleware/auth');
 const UserModel = require('../models/user');
-const { getAllRooms, getFeaturedRooms, setNewRoom } = require('../utils/room');
+const { getFeaturedRooms, setNewRoom } = require('../utils/room');
 
 const router = express.Router();
 
-router.get('/', isAuthenticated, async (req, res) => {
+router.get('/', isAdmin, async (req, res) => {
 	const rooms = await getFeaturedRooms();
 	const user = res.locals.currentUser;
 	res.render('dashboard', {
@@ -17,15 +17,14 @@ router.get('/', isAuthenticated, async (req, res) => {
 	});
 });
 
-router.get('/edit/profile/:id', isAuthenticated, (req, res) => {
+router.get('/edit/profile/:id', isAdmin, (req, res) => {
 	res.render('edit-profile', {
 		title: `Edit user profile`,
 		data: res.locals.currentUser
 	});
 });
 
-router.post('/edit/profile', isAuthenticated, (req, res) => {
-	console.log(req.session.currentUser._id, req.body);
+router.post('/edit/profile', isAdmin, (req, res) => {
 	const currentUser = req.session.currentUser;
 	const profpic = req.files ? req.files.profpic : null;
 	if (profpic) {
@@ -38,7 +37,7 @@ router.post('/edit/profile', isAuthenticated, (req, res) => {
 	});
 });
 
-router.post('/add/room', isAuthenticated, (req, res) => {
+router.post('/add/room', isAdmin, (req, res) => {
 	const image = req.files ? req.files.image : null;
 	if (image) {
 		image.name = req.body.name.toLowerCase().replace(/\s+/g, '_') + path.parse(image.name).ext;
