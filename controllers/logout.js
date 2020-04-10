@@ -3,7 +3,7 @@ const { setUserInfo } = require('../models/user');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-	setUserInfo({ username: null, password: null, logged: false });
+	req.session.destroy();
 	res.redirect('/');
 });
 

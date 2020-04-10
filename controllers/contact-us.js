@@ -1,5 +1,4 @@
 const express = require('express');
-const { getUserInfo } = require('../models/user');
 const router = express.Router();
 
 router
@@ -7,7 +6,7 @@ router
 	.get((req, res) => {
 		res.render('contact-us', {
 			title: 'Contact Us',
-			user: getUserInfo()
+			user: res.locals.currentUser
 		});
 	})
 	.post(({ body: { name, email, message } }, res) => {

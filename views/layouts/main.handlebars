@@ -43,10 +43,16 @@
                     </a>
 
                     {{#unless user.logged}}
-                    <a class="navbar-item" href="register">
+                    <a class="navbar-item" href="/register">
                         Sign up
                     </a>
                     {{/unless}}
+
+                    {{#if user.logged}}
+                    <a class="navbar-item" href="/dashboard">
+                        Dashboard
+                    </a>
+                    {{/if}}
 
 
                     <a class="navbar-item" {{#if user.logged}} href="/logout"

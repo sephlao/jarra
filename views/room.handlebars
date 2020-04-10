@@ -1,0 +1,56 @@
+<section class="hero rooms" style="background-image: url(/img/uploads/room/{{room.imgURL}})">
+    <div class="hero-body">
+    </div>
+</section>
+<section class="section">
+    <div class="container is-fluid room">
+        <div class="room-info">
+            <h1 class="title">{{room.name}}</h1>
+            <h2 class="sub-title">{{room.location}}</h2>
+            <p>{{room.text}}</p>
+            <p><strong>Guests: </strong>{{room.guest}}</p>
+            <p><strong>Rating: </strong>{{room.rating}}</p>
+            <p><strong>Tags:</strong>
+                <ul style="list-style: disc; margin-left: 2em;">
+                    {{#each room.tag}}
+                    <li>
+                        {{this}}
+                    </li>
+                    {{/each}}
+                </ul>
+            </p>
+
+            {{#if user.isAdmin}}
+            <div class="link">
+                <a href="/rooms/update/{{room.id}}" class="is-primary">Update</a>
+                <a data-roomId="{{room.id}}" class="is-danger">Remove</a>
+            </div>
+            {{/if}}
+        </div>
+
+        <div class="reserve">
+            <p><strong>Price per night: </strong>${{room.price}}</p>
+            <form action="/rooms/reserve/{{room.id}}" method="POST" class="form">
+                <div class="form-dates">
+                    <div class="field">
+                        <div class="control">
+                            <label for="checkin" class="label">CHECK-IN:</label>
+                            <input class="input is-primary" type="date" id="checkin" placeholder="Anywhere">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label for="checkout" class="label">CHECK-OUT:</label>
+                            <input class="input is-primary" type="date" id="checkout" placeholder="Anywhere">
+                        </div>
+                    </div>
+                </div>
+                <div class="field submit">
+                    <div class="control">
+                        <button type="submit" class="button is-primary">Reserve</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

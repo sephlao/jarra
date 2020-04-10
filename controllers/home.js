@@ -1,13 +1,12 @@
 const express = require('express');
-const { getFeaturedProducts } = require('../models/rooms');
-const { getUserInfo } = require('../models/user');
+const { getFeaturedRooms } = require('../utils/room');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
 	res.render('home', {
 		title: 'Home',
-		rooms: getFeaturedProducts(),
-		user: getUserInfo()
+		rooms: await getFeaturedRooms(),
+		user: res.locals.currentUser
 	});
 });
 

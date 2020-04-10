@@ -6,6 +6,13 @@
 
 <section class="section">
     <div class="container is-fluid">
+        <form method="GET" id="search-room">
+            <div class="field">
+                <label for="search" class="label">Search location:</label>
+                <input class="input is-primary" type="text" name="search" id="search" placeholder="Toronto"
+                    value="{{search}}">
+            </div>
+        </form>
         {{> rooms}}
     </div>
 </section>
