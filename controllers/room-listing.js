@@ -1,13 +1,20 @@
 const express = require('express');
-const { getAllRooms, getRoomById, updateRoom, removeRoom } = require('../utils/room');
+const { getAllRooms, getRoomsbyLocation, getRoomById, updateRoom, removeRoom } = require('../utils/room');
 const { isAdmin } = require('../middleware/auth');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
+	let rooms = [];
+	if (req.query && req.query.search) {
+		rooms = await getRoomsbyLocation(req.query.search);
+	} else {
+		rooms = await getAllRooms();
+	}
 	res.render('rooms', {
 		title: 'Room Listing',
-		rooms: await getAllRooms(),
-		user: { ...res.locals.currentUser }
+		rooms,
+		user: { ...res.locals.currentUser },
+		search: req.query.search
 	});
 });
 

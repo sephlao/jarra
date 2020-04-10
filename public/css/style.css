@@ -305,6 +305,11 @@ form .field.submit {
 	color: darkred;
 }
 
+#search-room {
+	margin: 2em 0;
+	max-width: 300px;
+}
+
 @media screen and (max-width: 1023px) {
 	.navbar {
 		background-color: transparent;

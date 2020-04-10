@@ -6,6 +6,8 @@ const getAvailableRooms = async () => RoomModel.find({ isAvailable: true });
 
 const getFeaturedRooms = async () => await RoomModel.find({ tag: 'FEATURED' });
 
+const getRoomsbyLocation = async location => await RoomModel.find({ location: { $regex: location, $options: 'i' } });
+
 const setNewRoom = async room => {
 	try {
 		return new RoomModel({ ...room }).save();
@@ -27,5 +29,6 @@ module.exports = {
 	setNewRoom,
 	getRoomById,
 	updateRoom,
-	removeRoom
+	removeRoom,
+	getRoomsbyLocation
 };
