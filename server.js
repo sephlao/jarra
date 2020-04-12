@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
 const session = require('express-session');
 const Handlebars = require('handlebars');
+const cors = require('cors');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 
 // controllers
@@ -45,6 +46,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(fileUpload());
+app.use(cors());
 
 app.use(session({ secret: `${process.env.SESSION_SECRET}`, resave: false, saveUninitialized: true }));
 
